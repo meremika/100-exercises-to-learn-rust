@@ -6,6 +6,16 @@ pub struct TicketStore {
     tickets: Vec<Ticket>,
 }
 
+impl<'a> IntoIterator for &'a TicketStore {
+    type Item = &'a Ticket;
+
+    type IntoIter = std::slice::Iter<'a, Ticket>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.tickets.iter()
+    }
+}
+
 #[derive(Clone, Debug, PartialEq)]
 pub struct Ticket {
     pub title: TicketTitle,
@@ -21,6 +31,7 @@ pub enum Status {
 }
 
 impl TicketStore {
+    #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
         Self {
             tickets: Vec::new(),
