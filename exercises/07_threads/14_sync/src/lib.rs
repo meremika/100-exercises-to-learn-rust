@@ -1,6 +1,7 @@
 // Not much to be exercised on `Sync`, just a thing to remember.
+#[allow(dead_code)]
 fn outro() -> &'static str {
-    "I have a good understanding of __!"
+    "I have a good understanding of Send and Sync!"
 }
 
 #[cfg(test)]
