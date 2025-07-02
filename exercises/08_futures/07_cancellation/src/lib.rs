@@ -46,6 +46,11 @@ mod tests {
 
         let buffered = handle.await.unwrap();
         let buffered = std::str::from_utf8(&buffered).unwrap();
-        assert_eq!(buffered, "");
+        // the first half of each message gets written before
+        // the task is cancelled
+        //
+        // hello from this task
+        // ++    ++   ++   ++
+        assert_eq!(buffered, "hefrthta");
     }
 }
